@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ページめくりサンプル</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #2c3e50;
+    }
+    /* ページの見た目 */
+    .page {
+      background-color: #fdfaf5;
+      border: 1px solid #d3c6b4;
+      padding: 30px;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    }
+    /* 表紙・裏表紙の見た目 */
+    .page-cover {
+      background-color: #8e44ad;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 本の本体 -->
+  <div id="my-book">
+    <div class="page page-cover" data-density="hard">表紙</div>
+    <div class="page">
+      <h2>1ページ目</h2>
+      <p>角をドラッグするかクリックするとめくれます。</p>
+    </div>
+    <div class="page">
+      <h2>2ページ目</h2>
+      <p>見開きで表示されます。</p>
+    </div>
+    <div class="page">
+      <h2>3ページ目</h2>
+      <p>画像や文章を自由に入れられます。</p>
+    </div>
+    <div class="page page-cover" data-density="hard">裏表紙</div>
+  </div>
+
+  <!-- StPageFlipライブラリの読み込み -->
+  <script src="https://jsdelivr.net"></script>
+  <script>
+    // 本の設定と起動
+    const pageFlip = new St.PageFlip(document.getElementById('my-book'), {
+      width: 350,  // 1ページの幅
+      height: 500, // 1ページの高さ
+      showCover: true // 表紙を1枚で表示する
+    });
+
+    // ページ要素を読み込む
+    pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+  </script>
+
+</body>
+</html>
